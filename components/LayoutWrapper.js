@@ -1,18 +1,19 @@
-import siteMetadata from '@/data/siteMetadata'
-import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
 import Link from './Link'
-import SectionContainer from './SectionContainer'
 import Footer from './Footer'
+import Logo from '@/data/icon.svg'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import siteMetadata from '@/data/siteMetadata'
+import headerNavLinks from '@/data/headerNavLinks'
+import SectionContainer from './SectionContainer'
 
 const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
-        <header className="flex items-center justify-between py-10">
+        <header className="flex items-center justify-between">
           <div>
+            {/* logo y nombre */}
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <div className="flex items-center justify-between">
                 <div className="mr-3">
@@ -29,6 +30,7 @@ const LayoutWrapper = ({ children }) => {
             </Link>
           </div>
           <div className="flex items-center text-base leading-5">
+            {/* items menu */}
             <div className="hidden sm:block">
               {headerNavLinks.map((link) => (
                 <Link

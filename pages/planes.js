@@ -3,14 +3,17 @@ import projectsData from '@/data/projectsData'
 import Card from '@/components/Card'
 import { PageSEO } from '@/components/SEO'
 
-export default function Projects() {
+// md 40%
+// sm 75%
+
+export default function Planes() {
   return (
     <>
       <PageSEO title={`Projects - ${siteMetadata.author}`} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Projects
+          <h1 className="text-2xl font-extrabold leading-4 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-3 md:text-4xl md:leading-3">
+            Planes
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             Showcase your projects with a hero image (16 x 9)
