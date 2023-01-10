@@ -5,8 +5,15 @@ module.exports = {
     amd: true,
     node: true,
     es6: true,
+    es2021: true,
   },
-  extends: ['eslint:recommended', 'plugin:prettier/recommended', 'next', 'next/core-web-vitals'],
+  extends: [
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'next',
+    'next/core-web-vitals',
+    'prettier',
+  ],
   rules: {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
