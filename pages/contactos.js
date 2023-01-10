@@ -20,11 +20,9 @@ export default function About({ authorDetails }) {
         mdxSource={mdxSource}
         frontMatter={frontMatter}
       />
-      {siteMetadata.newsletter.provider !== '' && (
-        <div className="justify-cente r flex items-center pt-4">
-          <NewsletterForm />
-        </div>
-      )}
+      <div className="flex items-center justify-center pt-4">
+        <NewsletterForm />
+      </div>
     </>
   )
 }

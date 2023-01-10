@@ -1,10 +1,13 @@
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 
-export default function Home({ posts }) {
+export default function Home() {
   return (
     <>
-      <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
+      <PageSEO
+        title={siteMetadata.title}
+        description={siteMetadata.description}
+      />
       <div className="flex justify-center">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5 ">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-5xl md:leading-14">

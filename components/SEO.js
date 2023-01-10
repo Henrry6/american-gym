@@ -2,20 +2,32 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import siteMetadata from '@/data/siteMetadata'
 
-const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl }) => {
+const CommonSEO = ({
+  title,
+  description,
+  ogType,
+  ogImage,
+  twImage,
+  canonicalUrl,
+}) => {
   const router = useRouter()
   return (
     <Head>
       <title>{title}</title>
       <meta name="robots" content="follow, index" />
       <meta name="description" content={description} />
-      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
+      <meta
+        property="og:url"
+        content={`${siteMetadata.siteUrl}${router.asPath}`}
+      />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteMetadata.title} />
       <meta property="og:description" content={description} />
       <meta property="og:title" content={title} />
       {ogImage.constructor.name === 'Array' ? (
-        ogImage.map(({ url }) => <meta property="og:image" content={url} key={url} />)
+        ogImage.map(({ url }) => (
+          <meta property="og:image" content={url} key={url} />
+        ))
       ) : (
         <meta property="og:image" content={ogImage} key={ogImage} />
       )}
@@ -26,7 +38,11 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl 
       <meta name="twitter:image" content={twImage} />
       <link
         rel="canonical"
-        href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
+        href={
+          canonicalUrl
+            ? canonicalUrl
+            : `${siteMetadata.siteUrl}${router.asPath}`
+        }
       />
     </Head>
   )
@@ -81,7 +97,6 @@ export const BlogSEO = ({
   images = [],
   canonicalUrl,
 }) => {
-  const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
   let imagesArr =
@@ -149,8 +164,12 @@ export const BlogSEO = ({
         canonicalUrl={canonicalUrl}
       />
       <Head>
-        {date && <meta property="article:published_time" content={publishedAt} />}
-        {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
+        {date && (
+          <meta property="article:published_time" content={publishedAt} />
+        )}
+        {lastmod && (
+          <meta property="article:modified_time" content={modifiedAt} />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -7,12 +7,15 @@ import formatDate from '@/lib/utils/formatDate'
 import Comments from '@/components/comments'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
-export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
+export default function PostLayout({ frontMatter, next, prev, children }) {
   const { date, title } = frontMatter
 
   return (
     <SectionContainer>
-      <BlogSEO url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
+      <BlogSEO
+        url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`}
+        {...frontMatter}
+      />
       <ScrollTopAndComment />
       <article>
         <div>
@@ -36,7 +39,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             style={{ gridTemplateRows: 'auto 1fr' }}
           >
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
+              <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">
+                {children}
+              </div>
             </div>
             <Comments frontMatter={frontMatter} />
             <footer>
