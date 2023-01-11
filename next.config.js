@@ -7,7 +7,7 @@ const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app;
   style-src 'self' 'unsafe-inline';
-  img-src * blob: data:;
+  img-src * blob: data: public:;
   media-src 'none';
   connect-src *;
   font-src 'self';
@@ -74,6 +74,7 @@ module.exports = () => {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       })
+      config.resolve.alias['~'] = __dirname
 
       if (!dev && !isServer) {
         // Replace React with Preact only in client production build

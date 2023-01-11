@@ -1,5 +1,4 @@
 import { getFileBySlug } from '@/lib/mdx'
-import siteMetadata from '@/data/siteMetadata'
 import NewsletterForm from '@/components/NewsletterForm'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 
