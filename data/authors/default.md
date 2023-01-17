@@ -1,6 +1,6 @@
 ---
 name: 'American Gym'
-avatar: /static/images/avatar.png
+avatar: /static/images/logo-gym.png
 occupation: Gimnasio
 company: Quito - Ecuador
 email: address@yoursite.com

@@ -2,7 +2,7 @@ const siteMetadata = {
   title: 'Next.js Starter Blog',
   author: 'Tails Azimuth',
   headerTitle: 'American Gym',
-  description: 'A blog created with Next.js and Tailwind.css',
+  description: 'Planes mensuales al alcance de tu bolsillo.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',

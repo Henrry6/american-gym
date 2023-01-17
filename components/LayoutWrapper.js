@@ -19,7 +19,7 @@ const LayoutWrapper = ({ children }) => {
                 <Logo />
               </div>
               {typeof siteMetadata.headerTitle === 'string' ? (
-                <div className="hidden h-6 text-2xl font-semibold text-red-700 dark:text-red-600 dark:hover:text-gray-50 sm:block">
+                <div className="hidden h-6 text-2xl font-semibold sm:block">
                   {siteMetadata.headerTitle}
                 </div>
               ) : (
@@ -45,7 +45,6 @@ const LayoutWrapper = ({ children }) => {
           <MobileNav />
         </div>
       </header>
-      <hr className="divide-y bg-gray-200 dark:bg-red-900 md:mt-2" />
       <SectionContainer>
         <div className="flex h-screen flex-col justify-between">
           <main className="mb-auto">{children}</main>
