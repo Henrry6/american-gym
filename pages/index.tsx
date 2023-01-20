@@ -1,7 +1,9 @@
-import Link from 'next/link'
 import Image from 'next/image'
+import { Typography } from 'antd'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
+import { ArrowRightOutlined } from '@ant-design/icons'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -17,13 +19,13 @@ export default function Home() {
             width={1500}
             height={972}
             alt="x"
-            className="opacity-60 dark:opacity-70 md:opacity-100"
+            className="dark:opacity-70"
           />
         </div>
         <div className="ml-4 flex items-center justify-center ">
           <div className="space-y-2 pt-6 pb-8 md:space-y-5 ">
-            <h1 className="text-2xl font-extrabold leading-9 text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-5xl md:leading-14">
-              American Gym entrena diferente
+            <h1 className="text-center text-2xl font-extrabold leading-9 text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-5xl md:leading-14">
+              American Gym <br /> entrena diferente! 💪
             </h1>
             <p className="flex justify-center text-lg leading-7 text-gray-500 dark:text-gray-400">
               {siteMetadata.description}
@@ -40,16 +42,23 @@ export default function Home() {
         }}
       >
         <div className="flex w-4/5 justify-end">
-          <div className="w-[573px] border-t-8 border-t-red-600 bg-white py-12 px-10 md:px-[84px] md:py-[72px]">
+          <div className="w-[573px] border-t-8 border-t-red-600 bg-white py-12 px-10 leading-8 md:px-[84px] md:py-[72px]">
             <div>
-              <h3>MÚSCULOS TONIFICADOS</h3>
-              <p>
-                El entrenamiento en la elíptica supone poner a trabajar el 80%
-                de toda nuestra musculatura. Avanzando sobre ella, el esfuerzo
-                se centra en el tren inferior y, moviendo los bastones de
-                agarre, mueves brazos y pectorales.
+              <Typography.Title level={4}>
+                Beneficios de ir al gym
+              </Typography.Title>
+
+              <p className="mb-3 text-justify dark:text-gray-900">
+                Hacer deporte es una de las actividades que cualquier persona
+                debería hacer regularmente a lo largo de su vida. Y aunque es
+                algo más que obvio, recomendado por médicos y distintos
+                especialistas en salud, no todo el mundo lo tiene tan claro.
               </p>
-              <Link href={''}>Ir a</Link>
+              <Link href="/beneficios" passHref>
+                <Typography.Link className="flex items-center text-lg">
+                  <span className="mr-3">Ver</span> <ArrowRightOutlined />
+                </Typography.Link>
+              </Link>
             </div>
           </div>
         </div>

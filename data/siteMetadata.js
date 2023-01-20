@@ -1,5 +1,5 @@
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
+  title: 'American Gym',
   author: 'Tails Azimuth',
   headerTitle: 'American Gym',
   description: 'Planes mensuales al alcance de tu bolsillo.',
