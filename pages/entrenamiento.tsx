@@ -7,7 +7,7 @@ export default function Entrenamiento() {
   const [users, setusers] = useState<any[]>([])
 
   useEffect(() => {
-    axios.get('/api/users').then(({ data }) => {
+    axios.get('https://henrry-api.herokuapp.com/users').then(({ data }) => {
       console.log(data)
       setusers(data)
     })
