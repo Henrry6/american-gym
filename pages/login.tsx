@@ -23,7 +23,7 @@ const LoginEmpresa: FC = () => {
     try {
       const { data } = await axios.post<LoginRespuesta>('/api/auth/user', value)
       crearToken(data.token)
-      router.push((router.query.redirect as string) || '/user')
+      router.push((router.query.redirect as string) || '/app')
     } catch (err) {
       showError(err)
       setIsLoading(false)
