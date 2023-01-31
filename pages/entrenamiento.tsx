@@ -2,13 +2,13 @@ import axios from 'axios'
 import { Image, Typography } from 'antd'
 import { PageSEO } from '@/components/SEO'
 import { useEffect, useState } from 'react'
+import configs from '@/assets/configs'
 
 export default function Entrenamiento() {
   const [users, setusers] = useState<any[]>([])
 
   useEffect(() => {
-    // axios.get('https://henrry-api.herokuapp.com/users').then(({ data }) => {
-    axios.get('/api/users').then(({ data }) => {
+    axios.get(`${configs.hostApi}/users`).then(({ data }) => {
       console.log(data)
       setusers(data)
     })

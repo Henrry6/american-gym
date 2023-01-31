@@ -17,7 +17,8 @@ class Configs {
   readonly hostContinuidad: string = process.env.NEXT_PUBLIC_HOST_CONTINUIDAD!
   readonly hostActivosFijos: string =
     process.env.NEXT_PUBLIC_HOST_ACTIVOS_FIJOS!
-  readonly hostApi: string = process.env.NEXT_PUBLIC_API!
+  readonly hostApi: string =
+    'https://henrry-api.herokuapp.com' || process.env.NEXT_PUBLIC_API!
 
   readonly redireccionar: boolean =
     process.env.NEXT_PUBLIC_REDIRECCIONAR === 'true'
