@@ -8,11 +8,11 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { destruirToken } from '@/assets/utils'
 import { Button, MenuProps, Modal, Space } from 'antd'
 import { Breadcrumb, Layout, Menu, theme } from 'antd'
-import ContextoUsuario, { Modulo, useContextoUsuario } from '@/contexts/User'
-import { destruirToken } from '@/assets/utils'
-import { useRouter } from 'next/router'
+import ContextoUsuario, { useContextoUsuario } from '@/contexts/User'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -58,11 +58,6 @@ const LayoutApp: FC<{ children: ReactNode }> = (props) => {
   const filterRoutes = routes.filter(
     (x: string) => x !== '' && x !== '_error' && x !== '404'
   )
-  // const retorno: Array<Modulo> = []
-  console.log(filterRoutes)
-  // retorno.push({
-  //   key: submoduleName,
-  // })
   const [collapsed, setCollapsed] = useState(false)
   const {
     token: { colorBgContainer },
