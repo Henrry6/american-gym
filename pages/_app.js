@@ -7,13 +7,12 @@ import '@fontsource/inter/variable-full.css'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
 
-import type { AppProps } from 'next/app'
 import siteMetadata from '@/data/siteMetadata'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import { useRouter } from 'next/router'
 import LayoutApp from '@/components/layouts/LayoutAnt'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }) {
   const router = useRouter()
   return (
     <div>
