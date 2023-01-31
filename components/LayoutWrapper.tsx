@@ -6,8 +6,13 @@ import ThemeSwitch from './ThemeSwitch'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import SectionContainer from './SectionContainer'
+import { LoginOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
+import { useRouter } from 'next/router'
 
-const LayoutWrapper = ({ children }) => {
+const LayoutWrapper = ({ children }: any) => {
+  const router = useRouter()
+
   return (
     <>
       <header className="flex items-center justify-between px-2 pt-2">
@@ -42,6 +47,11 @@ const LayoutWrapper = ({ children }) => {
             ))}
           </div>
           <ThemeSwitch />
+          <Button
+            className="flex items-center justify-center"
+            icon={<LoginOutlined title="Loguearse" />}
+            onClick={() => router.push('/login')}
+          />
           <MobileNav />
         </div>
       </header>

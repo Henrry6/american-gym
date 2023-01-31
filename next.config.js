@@ -2,6 +2,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const API = process.env.NEXT_PUBLIC_API
+
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
@@ -53,7 +55,16 @@ const securityHeaders = [
 ]
 
 module.exports = () => {
+  const rewrites = () => {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${API}/:path*`,
+      },
+    ]
+  }
   return withBundleAnalyzer({
+    rewrites,
     reactStrictMode: true,
     eslint: {
       dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
@@ -69,22 +80,12 @@ module.exports = () => {
     compiler: {
       styledComponents: true,
     },
-    webpack: (config, { dev, isServer }) => {
+    webpack: (config) => {
       config.module.rules.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       })
       config.resolve.alias['~'] = __dirname
-
-      if (!dev && !isServer) {
-        // Replace React with Preact only in client production build
-        Object.assign(config.resolve.alias, {
-          'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
-          react: 'preact/compat',
-          'react-dom/test-utils': 'preact/test-utils',
-          'react-dom': 'preact/compat',
-        })
-      }
 
       return config
     },

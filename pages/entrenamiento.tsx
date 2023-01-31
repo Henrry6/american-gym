@@ -1,7 +1,17 @@
+import axios from 'axios'
 import { Image, Typography } from 'antd'
 import { PageSEO } from '@/components/SEO'
+import { useEffect, useState } from 'react'
 
 export default function Entrenamiento() {
+  const [users, setusers] = useState<any[]>([])
+
+  useEffect(() => {
+    axios.get('/api/users').then(({ data }) => {
+      console.log(data)
+      setusers(data)
+    })
+  }, [])
   return (
     <>
       <PageSEO title="Entrenamientos" description="Things I blog about" />
@@ -10,6 +20,7 @@ export default function Entrenamiento() {
           Entrenamientos
         </Typography.Title>
       </div>
+      {JSON.stringify(users)}
       <div className="mt-4 flex justify-center">
         <Image.PreviewGroup>
           <Image width={200} alt="prensa" src="/static/piernas.jpeg" />

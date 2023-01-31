@@ -1,18 +1,16 @@
 import Link from 'next/link'
-import { Image } from 'antd'
+import Head from 'next/head'
 import Imagess from 'next/image'
 import { Typography } from 'antd'
-import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import { ArrowRightOutlined } from '@ant-design/icons'
 
 export default function Home() {
   return (
     <>
-      <PageSEO
-        title={siteMetadata.title}
-        description={siteMetadata.description}
-      />
+      <Head>
+        <title>Inicio</title>
+      </Head>
       <div className="mx-6 my-3 grid sm:grid-cols-1 md:grid-cols-2">
         <div className="flex justify-center">
           <Imagess

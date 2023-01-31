@@ -21,7 +21,6 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/static/favicons/logo-gym-16px.png"
           />
-          <link rel="manifest" href="/static/favicons/site.webmanifest" />
           <link
             rel="mask-icon"
             href="/static/favicons/safari-pinned-tab.svg"
