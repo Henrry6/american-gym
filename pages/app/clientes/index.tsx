@@ -1,8 +1,6 @@
-// import axios from 'axios'
+import axios from 'axios'
 import { Users } from '@/types/Users'
-import { axios } from '@/assets/utils'
 import { useRouter } from 'next/router'
-import configs from '@/assets/configs'
 import React, { useEffect, useState } from 'react'
 import { Button, message, Popconfirm, Space, Table } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
@@ -14,8 +12,7 @@ const Clients: React.FC = () => {
   const [clients, setusers] = useState<Users[]>([])
 
   const init = async () => {
-    axios.get(`${configs.hostApi}/users`).then(({ data }) => {
-      console.log(data)
+    axios.get('/api/users').then(({ data }) => {
       const users = data.map((item: Users, index: number) => ({
         ...item,
         key: index,
@@ -30,7 +27,7 @@ const Clients: React.FC = () => {
 
   const remove = async (id: string) => {
     if (id) {
-      await axios.delete(`${configs.hostApi}/users/${id}`)
+      await axios.delete(`/api/users/${id}`)
       message.success('Documento eliminado')
       init()
     }

@@ -1,10 +1,10 @@
+import axios from 'axios'
+import { useEffect } from 'react'
 import $rules from '@/assets/rules'
+import { Users } from '@/types/Users'
+import configs from '@/assets/configs'
 import { useRouter } from 'next/router'
 import { Button, Form, Input, message } from 'antd'
-import { useEffect } from 'react'
-import axios from 'axios'
-import configs from '@/assets/configs'
-import { Users } from '@/types/Users'
 
 export default function FormClient() {
   const router = useRouter()
