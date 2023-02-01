@@ -13,6 +13,7 @@ export default function Entrenamiento() {
       setusers(data)
     })
   }, [])
+
   return (
     <>
       <PageSEO title="Entrenamientos" description="Things I blog about" />

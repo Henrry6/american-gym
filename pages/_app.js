@@ -24,7 +24,8 @@ export default function App({ Component, pageProps }) {
           <div className="my-48 w-auto	">
             <Component {...pageProps} />
           </div>
-        ) : ['/app', '/404', '/_error'].includes(router.pathname) ? (
+        ) : router.pathname.startsWith('/app') ||
+          router.pathname.includes('/404') ? (
           <LayoutApp>
             <Component {...pageProps} />
           </LayoutApp>

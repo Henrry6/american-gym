@@ -34,15 +34,15 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem(
-    <Link href="/user/products">Estadisticas</Link>,
+    <Link href="/app/productos">Estadisticas</Link>,
     '1',
     <PieChartOutlined />
   ),
-  getItem(<Link href="/user/products">Ventas</Link>, '2', <DesktopOutlined />),
-  getItem('Inventario', 'sub1', <UserOutlined />, [
-    getItem(<Link href="/user/products">Productos</Link>, '3'),
-    getItem(<Link href="/user/services">Servicios</Link>, '4'),
-    getItem(<Link href="/user/kardex">Kardex</Link>, '5'),
+  getItem(<Link href="/app/clientes">Usuarios</Link>, '2', <UserOutlined />),
+  getItem('Inventario', 'sub1', <DesktopOutlined />, [
+    getItem(<Link href="/app/productos">Productos</Link>, '3'),
+    getItem(<Link href="/app/servicios">Servicios</Link>, '4'),
+    getItem(<Link href="/app/kardex">Kardex</Link>, '5'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [
     getItem('Team 1', '6'),
@@ -79,12 +79,7 @@ const LayoutApp: FC<{ children: ReactNode }> = (props) => {
         >
           {user?.name}
         </div>
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={['1']}
-          mode="inline"
-          items={items}
-        />
+        <Menu theme="dark" mode="inline" items={items} />
       </Sider>
       <Layout className="site-layout">
         <Header
