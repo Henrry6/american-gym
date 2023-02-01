@@ -1,13 +1,15 @@
-import { useContextoUsuario } from '@/contexts/User'
 import { FC } from 'react'
+import { Typography } from 'antd'
 
 const UserHome: FC = () => {
-  const user = useContextoUsuario()
-  console.log(user)
   return (
-    <>
-      <p>Binvenido</p>
-    </>
+    <div className="flex justify-center">
+      <div>
+        <Typography.Title level={4}>
+          Binvenidos a herramientas de construcción
+        </Typography.Title>
+      </div>
+    </div>
   )
 }
 
