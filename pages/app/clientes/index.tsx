@@ -32,6 +32,7 @@ const Clients: React.FC = () => {
     if (id) {
       await axios.delete(`${configs.hostApi}/users/${id}`)
       message.success('Documento eliminado')
+      init()
     }
   }
 
@@ -61,6 +62,9 @@ const Clients: React.FC = () => {
 
               <Popconfirm
                 title="¿Eliminar usuario?"
+                okButtonProps={{
+                  type: 'default',
+                }}
                 onConfirm={() => remove(record._id)}
               >
                 <DeleteOutlined title="Eliminar" />
