@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import $rules from '@/assets/rules'
 import { Users } from '@/types/Users'
-import configs from '@/assets/configs'
 import { useRouter } from 'next/router'
 import { Button, Form, Input, message } from 'antd'
 
@@ -12,20 +11,18 @@ export default function FormClient() {
 
   useEffect(() => {
     if (router.query.id) {
-      axios
-        .get(`${configs.hostApi}/users/${router.query.id}`)
-        .then(({ data }) => {
-          form.setFieldsValue(data)
-        })
+      axios.get(`/api/users/${router.query.id}`).then(({ data }) => {
+        form.setFieldsValue(data)
+      })
     }
   }, [router.query.id])
 
   const onSubmit = (data: Users) => {
     if (router.query.id) {
-      axios.put(`${configs.hostApi}/users/${router.query.id}`, data)
+      axios.put(`/api/users/${router.query.id}`, data)
       message.success('Documento actualizado')
     } else {
-      axios.post(`${configs.hostApi}/users`, data)
+      axios.post('/api/users', data)
       message.success('Documento guardado correctamente')
     }
     router.push('/app/clientes')

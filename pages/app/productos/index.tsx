@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Space, Table, Tag } from 'antd'
-import configs from '@/assets/configs'
 import axios from 'axios'
+import { Space, Table } from 'antd'
+import React, { useEffect, useState } from 'react'
 
 const { Column, ColumnGroup } = Table
 
@@ -9,8 +8,7 @@ const Products: React.FC = () => {
   const [products, setusers] = useState<any[]>([])
 
   useEffect(() => {
-    axios.get(`${configs.hostApi}/users`).then(({ data }) => {
-      console.log(data)
+    axios.get('api/users').then(({ data }) => {
       setusers(data)
     })
   }, [])
