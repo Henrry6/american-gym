@@ -1,9 +1,10 @@
-export interface Users {
+export interface User {
   _id: string
+  id: string
   name: string
   username: string
   email: string
-  cellphone: string
   password: string
-  city: string
+  cellphone?: string
+  city?: string
 }

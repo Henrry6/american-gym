@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 import $rules from '@/assets/rules'
-import { Users } from '@/types/Users'
+import { User } from '@/types/User'
 import { useRouter } from 'next/router'
 import { Button, Form, Input, message } from 'antd'
 
@@ -17,7 +17,7 @@ export default function FormClient() {
     }
   }, [router.query.id])
 
-  const onSubmit = (data: Users) => {
+  const onSubmit = (data: User) => {
     if (router.query.id) {
       axios.put(`/api/users/${router.query.id}`, data)
       message.success('Documento actualizado')
@@ -33,13 +33,15 @@ export default function FormClient() {
   return (
     <Form form={form} layout="vertical" onFinish={onSubmit}>
       <div className={cssColumnas}>
-        <Form.Item
-          name="name"
-          label="Nombre"
-          rules={[$rules.required()]}
-          normalize={(text: string) => text.toUpperCase()}
-        >
+        <Form.Item name="name" label="Nombre" rules={[$rules.required()]}>
           <Input placeholder="Ingrese la razón social" />
+        </Form.Item>
+        <Form.Item
+          name="id"
+          label="No. Identificación"
+          rules={[$rules.required()]}
+        >
+          <Input placeholder="Ingrese su cédula/Ruc" />
         </Form.Item>
 
         <Form.Item name="username" label="Usuario" rules={[$rules.required()]}>
@@ -55,10 +57,10 @@ export default function FormClient() {
         <Form.Item name="email" label="Email" rules={[$rules.required()]}>
           <Input placeholder="Ingrese el correo" />
         </Form.Item>
-        <Form.Item name="cellphone" label="Celular" rules={[$rules.required()]}>
+        <Form.Item name="cellphone" label="Celular">
           <Input placeholder="Ingrese el número de teléfono" />
         </Form.Item>
-        <Form.Item name="city" label="Ciudad" rules={[$rules.required()]}>
+        <Form.Item name="city" label="Ciudad">
           <Input placeholder="Ingrese la ciudad" />
         </Form.Item>
       </div>

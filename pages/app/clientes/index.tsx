@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Users } from '@/types/Users'
+import { User } from '@/types/User'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { Button, message, Popconfirm, Space, Table } from 'antd'
@@ -9,11 +9,11 @@ const { Column } = Table
 
 const Clients: React.FC = () => {
   const router = useRouter()
-  const [clients, setusers] = useState<Users[]>([])
+  const [clients, setusers] = useState<User[]>([])
 
   const init = async () => {
     axios.get('/api/users').then(({ data }) => {
-      const users = data.map((item: Users, index: number) => ({
+      const users = data.map((item: User, index: number) => ({
         ...item,
         key: index,
       }))
@@ -51,7 +51,7 @@ const Clients: React.FC = () => {
         <Column title="Ciudad" dataIndex="city" key="city" />
         <Column
           key="action"
-          render={(_: Users, record: Users) => (
+          render={(_: User, record: User) => (
             <Space size="middle">
               <a href={`${'/app/clientes/'}/${record._id}/edit`}>
                 <EditOutlined title="Editar" />

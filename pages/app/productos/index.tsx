@@ -1,36 +1,75 @@
 import axios from 'axios'
-import { Space, Table } from 'antd'
+import { Product } from '@/types/Product'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { Button, message, Popconfirm, Space, Table } from 'antd'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
-const { Column, ColumnGroup } = Table
+const { Column } = Table
 
 const Products: React.FC = () => {
-  const [products, setusers] = useState<any[]>([])
+  const router = useRouter()
+  const [products, setusers] = useState<Product[]>([])
+
+  const init = async () => {
+    axios.get('/api/products').then(({ data }) => {
+      const products = data.map((item: Product, index: number) => ({
+        ...item,
+        key: index,
+      }))
+      setusers(products)
+    })
+  }
 
   useEffect(() => {
-    axios.get('api/users').then(({ data }) => {
-      setusers(data)
-    })
+    Promise.all([init()])
   }, [])
+
+  const remove = async (id: string) => {
+    if (id) {
+      await axios.delete(`/api/products/${id}`)
+      message.success('Documento eliminado')
+      init()
+    }
+  }
+
   return (
-    <Table dataSource={products}>
-      <ColumnGroup title="Name">
-        <Column title="First Name" dataIndex="name" key="name" />
-        <Column title="Last Name" dataIndex="username" key="username" />
-      </ColumnGroup>
-      <Column title="Age" dataIndex="age" key="age" />
-      <Column title="Address" dataIndex="address" key="address" />
-      <Column
-        title="Action"
-        key="action"
-        render={(_: any, record: any) => (
-          <Space size="middle">
-            <a>Invite {record.lastName}</a>
-            <a>Delete</a>
-          </Space>
-        )}
-      />
-    </Table>
+    <>
+      <div className="flex justify-end">
+        <Button type="primary" className="bg-blue-800" onClick={() => init()}>
+          Refrescar
+        </Button>
+        <Button onClick={() => router.push('/app/productos/insert')}>
+          Insertar
+        </Button>
+      </div>
+      <Table dataSource={products}>
+        <Column title="Código" dataIndex="code" key="code" />
+        <Column title="Descripción" dataIndex="description" key="description" />
+        <Column title="Precio" dataIndex="price" key="price" />
+        <Column title="Stock" dataIndex="total" key="total" />
+        <Column
+          key="action"
+          render={(_: Product, record: Product) => (
+            <Space size="middle">
+              <a href={`${'/app/productos/'}/${record._id}/edit`}>
+                <EditOutlined title="Editar" />
+              </a>
+
+              <Popconfirm
+                title="¿Eliminar productos?"
+                okButtonProps={{
+                  type: 'default',
+                }}
+                onConfirm={() => remove(record._id)}
+              >
+                <DeleteOutlined title="Eliminar" />
+              </Popconfirm>
+            </Space>
+          )}
+        />
+      </Table>
+    </>
   )
 }
 
