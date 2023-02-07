@@ -1,4 +1,4 @@
-import Link from './Link'
+import Link from 'next/link'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
 
@@ -10,11 +10,11 @@ export default function Footer() {
           <SocialIcon
             kind="mail"
             href={`mailto:${siteMetadata.email}`}
-            size="6"
+            size={6}
           />
-          <SocialIcon kind="github" href={siteMetadata.github} size="6" />
-          <SocialIcon kind="facebook" href={siteMetadata.facebook} size="6" />
-          <SocialIcon kind="youtube" href={siteMetadata.youtube} size="6" />
+          <SocialIcon kind="github" href={siteMetadata.github} size={6} />
+          <SocialIcon kind="facebook" href={siteMetadata.facebook} size={6} />
+          <SocialIcon kind="youtube" href={siteMetadata.youtube} size={6} />
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
           <div>{`© ${new Date().getFullYear()}`}</div>

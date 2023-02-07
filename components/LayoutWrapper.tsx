@@ -1,6 +1,6 @@
-import Link from './Link'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
+import Link from 'next/link'
 import ThemeSwitch from './ThemeSwitch'
 import Logo from '@/data/logo-gym-85px.svg'
 import siteMetadata from '@/data/siteMetadata'
@@ -14,7 +14,7 @@ const LayoutWrapper = ({ children }: any) => {
       <header className="flex items-center justify-between px-2 pt-2">
         <div>
           {/* logo y nombre */}
-          <Link href="/" aria-label={siteMetadata.headerTitle}>
+          <Link href="/" aria-label={siteMetadata.headerTitle} passHref>
             <div className="flex items-center justify-between">
               <div className="mr-3">
                 <Logo />
@@ -33,13 +33,11 @@ const LayoutWrapper = ({ children }: any) => {
           {/* items menu */}
           <div className="hidden sm:block">
             {headerNavLinks.map((link) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                className="p-1 font-medium text-gray-900 hover:text-red-700 dark:text-gray-100 dark:hover:text-red-700 sm:p-4"
-              >
-                {link.title}
-              </Link>
+              <a key={link.title} href={link.href}>
+                <span className="p-1 font-medium text-gray-900 hover:text-red-700 dark:text-gray-100 dark:hover:text-red-700 sm:p-4">
+                  {link.title}
+                </span>
+              </a>
             ))}
           </div>
           <ThemeSwitch />

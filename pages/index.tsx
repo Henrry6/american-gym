@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import { Typography, Image } from 'antd'
+import Image from '@/components/Imagen'
+import { Typography } from 'antd'
 import siteMetadata from '@/data/siteMetadata'
 import { ArrowRightOutlined } from '@ant-design/icons'
 
