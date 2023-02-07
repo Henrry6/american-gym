@@ -2,15 +2,15 @@ import '@/css/tailwind.css'
 import '@/css/prism.css'
 import 'katex/dist/katex.css'
 
+import Head from 'next/head'
 import '@fontsource/inter/variable-full.css'
 
 import { ThemeProvider } from 'next-themes'
-import Head from 'next/head'
 
 import siteMetadata from '@/data/siteMetadata'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import { useRouter } from 'next/router'
-import LayoutApp from '@/components/layouts/LayoutAnt'
+import LayoutApp from '@/layouts/LayoutAnt'
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()

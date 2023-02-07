@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Image } from 'antd'
+import Head from 'next/head'
 import { Timeline, Typography } from 'antd'
-import { PageSEO } from '@/components/SEO'
 
 const Item = (props: { title: string; description: string }) => (
   <Timeline.Item>
@@ -13,7 +13,9 @@ const Item = (props: { title: string; description: string }) => (
 export default function Nuev() {
   return (
     <>
-      <PageSEO title="Beneficios" description="" />
+      <Head>
+        <title>Beneficios</title>
+      </Head>
       <div className="px-8 text-justify sm:px-28 xl:px-96 ">
         <Typography.Title className="text-center dark:text-white" level={3}>
           Beneficios de ir al gym

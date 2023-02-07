@@ -1,7 +1,6 @@
-import siteMetadata from '@/data/siteMetadata'
-import projectsData from '@/data/projectsData'
+import Head from 'next/head'
 import Card from '@/components/Card'
-import { PageSEO } from '@/components/SEO'
+import projectsData from '@/data/projectsData'
 
 // md 40%
 // sm 75%
@@ -9,7 +8,9 @@ import { PageSEO } from '@/components/SEO'
 export default function Planes() {
   return (
     <>
-      <PageSEO title="Planes" description={siteMetadata.description} />
+      <Head>
+        <title>Planes</title>
+      </Head>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-4 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-3 md:text-4xl md:leading-3">

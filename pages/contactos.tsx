@@ -1,13 +1,15 @@
+import Head from 'next/head'
 import Image from '@/components/Image'
-import { PageSEO } from '@/components/SEO'
-import SocialIcon from '@/components/social-icons'
 import siteMetadata from '@/data/siteMetadata'
+import SocialIcon from '@/components/social-icons'
 import NewsletterForm from '@/components/NewsletterForm'
 
 export default function About() {
   return (
     <>
-      <PageSEO title={`Contactos - ${siteMetadata.title}`} />
+      <Head>
+        <title>Contactos</title>
+      </Head>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="ml-4 space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:text-4xl md:leading-14">

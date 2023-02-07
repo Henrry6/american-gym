@@ -1,6 +1,6 @@
 import axios from 'axios'
+import Head from 'next/head'
 import { Image, Typography } from 'antd'
-import { PageSEO } from '@/components/SEO'
 import { useEffect, useState } from 'react'
 
 export default function Entrenamiento() {
@@ -14,7 +14,9 @@ export default function Entrenamiento() {
 
   return (
     <>
-      <PageSEO title="Entrenamientos" description="Things I blog about" />
+      <Head>
+        <title>Entrenamientos</title>
+      </Head>
       <div className="flex flex-col items-center">
         <Typography.Title level={3} className="dark:text-white">
           Entrenamientos
