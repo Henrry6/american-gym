@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import Imagess from 'next/image'
-import { Typography } from 'antd'
+import { Typography, Image } from 'antd'
 import siteMetadata from '@/data/siteMetadata'
 import { ArrowRightOutlined } from '@ant-design/icons'
 
@@ -13,7 +12,7 @@ export default function Home() {
       </Head>
       <div className="mx-6 my-3 grid sm:grid-cols-1 md:grid-cols-2">
         <div className="flex justify-center">
-          <Imagess
+          <Image
             src="/static/portada.jpg"
             width={1500}
             height={972}
@@ -64,7 +63,7 @@ export default function Home() {
       </div>
       <div className="mx-6 my-3 grid sm:grid-cols-1 md:grid-cols-2">
         <div className="flex justify-center">
-          <Imagess
+          <Image
             width={450}
             height={500}
             alt="feeds"
@@ -113,7 +112,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex justify-center">
-          <Imagess
+          <Image
             width={600}
             height={500}
             alt="feeds"

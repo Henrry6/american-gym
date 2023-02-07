@@ -1,5 +1,5 @@
+import { Image } from 'antd'
 import Head from 'next/head'
-import Image from '@/components/Image'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
 import NewsletterForm from '@/components/NewsletterForm'
