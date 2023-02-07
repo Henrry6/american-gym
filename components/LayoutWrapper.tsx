@@ -1,18 +1,14 @@
 import Link from './Link'
 import Footer from './Footer'
-import Logo from '@/data/logo-gym-85px.svg'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import Logo from '@/data/logo-gym-85px.svg'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import SectionContainer from './SectionContainer'
-import { LoginOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
-import { useRouter } from 'next/router'
+import { UserOutlined } from '@ant-design/icons'
 
 const LayoutWrapper = ({ children }: any) => {
-  const router = useRouter()
-
   return (
     <>
       <header className="flex items-center justify-between px-2 pt-2">
@@ -47,11 +43,12 @@ const LayoutWrapper = ({ children }: any) => {
             ))}
           </div>
           <ThemeSwitch />
-          <Button
-            className="flex items-center justify-center"
-            icon={<LoginOutlined title="Loguearse" />}
-            onClick={() => router.push('/login')}
-          />
+          <a
+            href={'/login'}
+            className="ml-4 flex items-center gap-1 underline underline-offset-4"
+          >
+            <UserOutlined title="Editar" /> Log in
+          </a>
           <MobileNav />
         </div>
       </header>
