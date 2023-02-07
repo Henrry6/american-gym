@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import Card from '@/components/Card'
-import projectsData from '@/data/projectsData'
+// import Card from '@/components/Card'
 
 // md 40%
 // sm 75%
@@ -20,7 +19,7 @@ export default function Planes() {
             Showcase your projects with a hero image (16 x 9)
           </p>
         </div>
-        <div className="container py-12">
+        {/* <div className="container py-12">
           <div className="-m-4 flex flex-wrap">
             {projectsData.map((d) => (
               <Card
@@ -32,7 +31,7 @@ export default function Planes() {
               />
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )
