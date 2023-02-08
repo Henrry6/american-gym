@@ -1,9 +1,8 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-import Link from 'next/link'
-import { Image, Space } from 'antd'
-import Head from 'next/head'
-import { Timeline, Typography } from 'antd'
 import { FC } from 'react'
+import { Image } from 'antd'
+import Head from 'next/head'
+import Link from 'next/link'
+import { Timeline, Typography } from 'antd'
 
 const Beneficios: FC = () => {
   const Item: FC<{ title: string; description: string }> = (props: {
