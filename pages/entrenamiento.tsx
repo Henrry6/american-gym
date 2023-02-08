@@ -4,7 +4,7 @@ import { Image, Typography } from 'antd'
 import { useEffect, useState } from 'react'
 
 export default function Entrenamiento() {
-  const [users, setusers] = useState<any[]>([])
+  const [users, setusers] = useState<unknown[]>([])
 
   useEffect(() => {
     axios.get('/api/users').then(({ data }) => {

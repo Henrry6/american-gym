@@ -2,7 +2,7 @@ import Link from 'next/link'
 // import Image from './Image'
 import { Image } from 'antd'
 
-const Card = ({ title, description, imgSrc, href }: any) => (
+const Card = ({ title, description, imgSrc, href }: never) => (
   <div className="md p-4 md:w-1/2" style={{ maxWidth: '544px' }}>
     <div
       className={`${
