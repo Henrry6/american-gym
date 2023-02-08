@@ -22,7 +22,7 @@ export default function About() {
               src="/static/images/logo-gym.png"
               alt="avatar"
               width="250px"
-              height="250px"
+              height="350px"
               className="rounded-3xl"
             />
             <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">

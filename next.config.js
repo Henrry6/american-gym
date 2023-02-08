@@ -1,7 +1,3 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
 const API = process.env.NEXT_PUBLIC_API
 
 // You might need to insert additional domains in script-src if you are using external services
@@ -63,7 +59,7 @@ module.exports = () => {
       },
     ]
   }
-  return withBundleAnalyzer({
+  return {
     rewrites,
     reactStrictMode: true,
     eslint: {
@@ -89,5 +85,5 @@ module.exports = () => {
 
       return config
     },
-  })
+  }
 }

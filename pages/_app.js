@@ -1,6 +1,6 @@
 import '@/css/tailwind.css'
-import '@/css/prism.css'
-import 'katex/dist/katex.css'
+// import '@/css/prism.css'
+// import 'katex/dist/katex.css'
 
 import Head from 'next/head'
 import '@fontsource/inter/variable-full.css'

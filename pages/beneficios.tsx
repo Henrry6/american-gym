@@ -1,16 +1,21 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Link from 'next/link'
-import { Image } from 'antd'
+import { Image, Space } from 'antd'
 import Head from 'next/head'
 import { Timeline, Typography } from 'antd'
+import { FC } from 'react'
 
-const Item = (props: { title: string; description: string }) => (
-  <Timeline.Item>
-    <span className="text-base">
-      <b>{props.title}</b>: {props.description}
-    </span>
-  </Timeline.Item>
-)
-export default function Nuev() {
+const Beneficios: FC = () => {
+  const Item: FC<{ title: string; description: string }> = (props: {
+    title: string
+    description: string
+  }) => (
+    <Timeline.Item>
+      <span className="text-base">
+        <b>{props.title}</b>: {props.description}
+      </span>
+    </Timeline.Item>
+  )
   return (
     <>
       <Head>
@@ -126,14 +131,23 @@ export default function Nuev() {
             social que te alegrará el alma."
           />
         </Timeline>
-        Por ahora estas son todas la razones que te vamos a dar para que veas
-        todas las ventajas que tiene ir a un gimnasio. Aunque hay muchas más que
-        te invitamos a descubrir por ti mismo. Si te animas, infórmate en
-        nuestra sección de{' '}
-        <Link href="/contactos" passHref>
-          <Typography.Link className="text-base">contacto.</Typography.Link>
-        </Link>
+        <div>
+          <div>
+            Por ahora estas son todas la razones que te vamos a dar para que
+            veas todas las ventajas que tiene ir a un gimnasio. Aunque hay
+            muchas más que te invitamos a descubrir por ti mismo. Si te animas,
+            infórmate en nuestra sección de{' '}
+            <Link href="/contactos" className="text-blue-700">
+              contacto
+            </Link>
+          </div>
+          {/* <Link href="/contactos" passHref>
+            <Typography.Link className="text-base">contacto.</Typography.Link>
+          </Link> */}
+        </div>
       </div>
     </>
   )
 }
+
+export default Beneficios
