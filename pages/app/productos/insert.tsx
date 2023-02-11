@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import $rules from '@/assets/rules'
 import { User } from '@/types/User'
+import { Warehouse } from '@/types/Warehouse'
 import { useRouter } from 'next/router'
 import {
   Button,
@@ -10,6 +11,7 @@ import {
   InputNumber,
   message,
   Modal,
+  Select,
   Upload,
   UploadFile,
   UploadProps,
@@ -31,6 +33,22 @@ export default function FormClient() {
       url: 'https://megashop.ec/wp-content/uploads/2020/11/silla-giratoria-.jpg',
     },
   ])
+  const [warehouses, setusers] = useState<Warehouse[]>([])
+
+  const init = async () => {
+    /*
+    axios.get('/api/warehouses').then(({ data }) => {
+      const warehouses = data.map((item: Warehouse, index: number) => ({
+        ...item,
+        key: index,
+      }))
+      setusers(warehouses)
+    })*/
+    const warehouses = [
+      {_id: "1", code: "B1", name:"Bodega Test", dimension:500, address:{sector:"TUMBACO"}}
+    ];
+    setusers(warehouses);
+  }
 
   const handleCancel = () => setPreviewOpen(false)
 
@@ -108,6 +126,13 @@ export default function FormClient() {
             className="w-full"
             precision={2}
             placeholder="Ingrese el precio del productos"
+          />
+        </Form.Item>
+        <Form.Item name="warehouse" label="Bodega">
+          <Select
+            options={warehouses}
+            className="w-full"
+            placeholder="Seleccione"
           />
         </Form.Item>
         <Form.Item name="imag" label="Precio">

@@ -37,8 +37,9 @@ const items: MenuItem[] = [
   getItem(<Link href="/app/clientes">Usuarios</Link>, '2', <UserOutlined />),
   getItem('Inventario', 'sub1', <DesktopOutlined />, [
     getItem(<Link href="/app/productos">Productos</Link>, '3'),
-    getItem(<Link href="/app/servicios">Servicios</Link>, '4'),
-    getItem(<Link href="/app/kardex">Kardex</Link>, '5'),
+    getItem(<Link href="/app/bodegas">Bodegas</Link>, '4'),
+    //getItem(<Link href="/app/servicios">Servicios</Link>, '4'),
+    //getItem(<Link href="/app/kardex">Kardex</Link>, '5'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [
     getItem('Team 1', '6'),
