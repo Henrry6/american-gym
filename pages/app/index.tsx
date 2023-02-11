@@ -6,7 +6,7 @@ const UserHome: FC = () => {
     <div className="flex justify-center">
       <div>
         <Typography.Title level={4}>
-          Binvenidos a herramientas de construcción
+          Binvenidos al mejor sistema de gestión de inventarios
         </Typography.Title>
       </div>
     </div>
