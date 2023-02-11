@@ -48,7 +48,7 @@ const items: MenuItem[] = [
 ]
 
 const LayoutApp: FC<{ children: ReactNode }> = (props) => {
-  const { user } = useContextoUsuario()
+  // const { user } = useContextoUsuario()
   const router = useRouter()
   const routes = router.route.split('/')
   const filterRoutes = routes.filter(
@@ -73,7 +73,8 @@ const LayoutApp: FC<{ children: ReactNode }> = (props) => {
             background: 'rgba(255, 255, 255, 0.2)',
           }}
         >
-          {user?.name}
+          {/* {user?.name} */}
+          'HENRRY'
         </div>
         <Menu theme="dark" mode="inline" items={items} />
       </Sider>
@@ -127,9 +128,9 @@ const LayoutApp: FC<{ children: ReactNode }> = (props) => {
 
 const LayoutAppContex: FC<{ children: ReactNode }> = (props) => {
   return (
-    <ContextoUsuario>
-      <LayoutApp>{props.children}</LayoutApp>
-    </ContextoUsuario>
+    //   <ContextoUsuario>
+    //   </ContextoUsuario>
+    <LayoutApp>{props.children}</LayoutApp>
   )
 }
 
