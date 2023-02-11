@@ -50,8 +50,8 @@ export default function About() {
             referencia para la promoción del deporte entre la población.
             <p className="my-4">
               Los resultados y objetivos esperados para cada persona pueden ser
-              muy diferentes, es por eso que tener un plan adaptado a vos es muy
-              importante:
+              muy diferentes, es por eso que tener un plan adaptado para ti es
+              muy importante:
             </p>
             <ul className="ml-12   list-disc">
               <li>Aumentar la confianza en uno mismo para sentirse mejor.</li>
