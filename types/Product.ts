@@ -1,3 +1,5 @@
+import { Warehouse } from "./Warehouse"
+
 export interface Product {
   _id: string
   code: string
@@ -9,4 +11,5 @@ export interface Product {
   }
   price?: string
   total?: number
+  warehouse?: Warehouse
 }
