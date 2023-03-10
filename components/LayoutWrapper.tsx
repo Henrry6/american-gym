@@ -41,12 +41,12 @@ const LayoutWrapper = ({ children }: any) => {
             ))}
           </div>
           <ThemeSwitch />
-          <a
+          {/* <a
             href={'/login'}
             className="ml-4 flex items-center gap-1 underline underline-offset-4"
           >
             <UserOutlined title="Editar" /> Log in
-          </a>
+          </a> */}
           <MobileNav />
         </div>
       </header>
