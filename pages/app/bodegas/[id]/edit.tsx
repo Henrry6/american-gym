@@ -1,5 +1,5 @@
-import FormClient from '../insert'
+import FormBodegas from '../insert'
 
-export default function editClientMx() {
-  return FormClient()
+export default function Editar() {
+  return FormBodegas()
 }

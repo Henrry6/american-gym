@@ -3,17 +3,8 @@ import { useEffect } from 'react'
 import $rules from '@/assets/rules'
 import { User } from '@/types/User'
 import { useRouter } from 'next/router'
-import {
-  Button,
-  Card,
-  Form,
-  Input,
-  message,
-  Select,
-  Space,
-  Typography,
-} from 'antd'
 import { showError } from '@/assets/utils'
+import { Button, Card, Form, Input, message, Select, Space } from 'antd'
 
 export default function FormClient() {
   const router = useRouter()

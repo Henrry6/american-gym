@@ -240,16 +240,16 @@ export const Conceptos: FC<{
   )
 }
 
-const SalesNotes: FC = () => {
+export default function SalesNotes() {
   const router = useRouter()
   const [form] = Form.useForm()
   const [optionsClients, setOptionsClients] = useState<any[]>([])
   type TabsKeys = 'detalles'
   const [tabActiva, setTabActiva] = useState<TabsKeys>('detalles')
   const detalles = Form.useWatch('details', form) || []
-  const subtotalF = Form.useWatch('subtotal', form)
-  const total = Form.useWatch('total', form)
-  const iva = Form.useWatch('iva', form)
+  // const subtotalF = Form.useWatch('subtotal', form)
+  // const total = Form.useWatch('total', form)
+  // const iva = Form.useWatch('iva', form)
 
   useEffect(() => {
     if (router.query.id) {
@@ -505,5 +505,3 @@ const SalesNotes: FC = () => {
     </Form>
   )
 }
-
-export default SalesNotes

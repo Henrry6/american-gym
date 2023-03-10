@@ -1,5 +1,5 @@
-import FormClient from '../insert'
+import FormProductos from '../insert'
 
 export default function editClientMx() {
-  return FormClient()
+  return FormProductos()
 }
