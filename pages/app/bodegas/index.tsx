@@ -1,23 +1,23 @@
 import axios from 'axios'
-import { Product } from '@/types/Product'
 import { useRouter } from 'next/router'
+import { Cellar } from '@/types/Cellars'
 import React, { useEffect, useState } from 'react'
 import { Button, message, Popconfirm, Space, Table, Typography } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
 const { Column } = Table
 
-const Products: React.FC = () => {
+const Warehouses: React.FC = () => {
   const router = useRouter()
-  const [products, setusers] = useState<Product[]>([])
+  const [cellars, setCellars] = useState<Cellar[]>([])
 
   const init = async () => {
-    axios.get('/api/products').then(({ data }) => {
-      const products = data.map((item: Product, index: number) => ({
+    axios.get('/api/cellars').then(({ data }) => {
+      const dataCellars = data.map((item: Cellar, index: number) => ({
         ...item,
         key: index,
       }))
-      setusers(products)
+      setCellars(dataCellars)
     })
   }
 
@@ -27,7 +27,7 @@ const Products: React.FC = () => {
 
   const remove = async (id: string) => {
     if (id) {
-      await axios.delete(`/api/products/${id}`)
+      await axios.delete(`/api/cellars/${id}`)
       message.success('Documento eliminado')
       init()
     }
@@ -36,38 +36,30 @@ const Products: React.FC = () => {
   return (
     <>
       <Space className="flex justify-between mb-4">
-        <Typography.Title level={3}>Productos</Typography.Title>
+        <Typography.Title level={3}>Bodegas</Typography.Title>
         <Space>
           <Button type="primary" className="bg-blue-800" onClick={() => init()}>
             Refrescar
           </Button>
-          <Button onClick={() => router.push('/app/productos/insert')}>
+          <Button onClick={() => router.push('/app/bodegas/insert')}>
             Insertar
           </Button>
         </Space>
       </Space>
-      <Table dataSource={products}>
+      <Table dataSource={cellars}>
         <Column title="Código" dataIndex="code" key="code" />
-        <Column title="Nombre" dataIndex="name" key="nombre" />
-        <Column
-          title="Precio"
-          dataIndex="price"
-          key="price"
-          render={(_: Product, record: Product) =>
-            record.price ? record.price : '0,00'
-          }
-        />
-        <Column title="Stock" dataIndex="total" key="total" />
+        <Column title="Nombre" dataIndex="name" key="name" />
+        <Column title="Dimensión" dataIndex="dimension" key="dimension" />
         <Column
           key="action"
-          render={(_: Product, record: Product) => (
+          render={(_: Cellar, record: Cellar) => (
             <Space size="middle">
-              <a href={`${'/app/productos/'}/${record._id}/edit`}>
+              <a href={`${'/app/bodegas/'}/${record._id}/edit`}>
                 <EditOutlined title="Editar" />
               </a>
 
               <Popconfirm
-                title="¿Eliminar productos?"
+                title="¿Eliminar bodegas?"
                 okButtonProps={{
                   type: 'default',
                 }}
@@ -83,4 +75,4 @@ const Products: React.FC = () => {
   )
 }
 
-export default Products
+export default Warehouses

@@ -63,6 +63,7 @@ export interface UserInfo {
   sessionEndDate: string
   sessionStartDate: string
   userType: 'admin' | 'user'
+  type: 'administrador' | 'usuario'
   esAdmin: boolean
 }
 

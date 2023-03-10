@@ -1,21 +1,26 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import $rules from '@/assets/rules'
 import { User } from '@/types/User'
+import $rules from '@/assets/rules'
+import { RcFile } from 'antd/es/upload'
 import { useRouter } from 'next/router'
+import { Cellar } from '@/types/Cellars'
+import { useEffect, useState } from 'react'
+import { showError } from '@/assets/utils'
+import { PlusOutlined } from '@ant-design/icons'
 import {
   Button,
+  Card,
   Form,
   Input,
   InputNumber,
   message,
   Modal,
+  Select,
+  Space,
   Upload,
   UploadFile,
   UploadProps,
 } from 'antd'
-import { RcFile } from 'antd/es/upload'
-import { PlusOutlined } from '@ant-design/icons'
 
 export default function FormClient() {
   const router = useRouter()
@@ -31,6 +36,20 @@ export default function FormClient() {
       url: 'https://megashop.ec/wp-content/uploads/2020/11/silla-giratoria-.jpg',
     },
   ])
+  const [warehouseOptions, setWarehouseOptions] = useState<
+    { label: string; value: string }[]
+  >([])
+
+  const init = async () => {
+    axios.get('/api/cellars').then(({ data }) => {
+      const warehouseOptions = data.map((item: Cellar) => ({
+        label: `${item.code} - ${item.name}`,
+        value: item._id,
+      }))
+      setWarehouseOptions(warehouseOptions)
+    })
+    setWarehouseOptions(warehouseOptions)
+  }
 
   const handleCancel = () => setPreviewOpen(false)
 
@@ -65,16 +84,23 @@ export default function FormClient() {
     }
   }, [router.query.id])
 
-  const onSubmit = (data: User) => {
-    console.log(data)
-    if (router.query.id) {
-      axios.put(`/api/products/${router.query.id}`, data)
-      message.success('Documento actualizado')
-    } else {
-      axios.post('/api/products', data)
-      message.success('Documento guardado correctamente')
+  useEffect(() => {
+    Promise.all([init()])
+  }, [])
+
+  const onSubmit = async (data: User) => {
+    try {
+      if (router.query.id) {
+        await axios.put(`/api/products/${router.query.id}`, data)
+        message.success('Documento actualizado')
+      } else {
+        await axios.post('/api/products', data)
+        message.success('Documento guardado correctamente')
+      }
+      router.push('/app/productos')
+    } catch (e) {
+      showError(e)
     }
-    router.push('/app/productos')
   }
 
   const uploadButton = (
@@ -87,41 +113,57 @@ export default function FormClient() {
   const cssColumnas = 'grid grid-cols-1 md:grid-cols-2 gap-x-6'
 
   return (
-    <Form form={form} layout="vertical" onFinish={onSubmit}>
-      <div className={cssColumnas}>
-        <Form.Item name="code" label="Código" rules={[$rules.required()]}>
-          <Input placeholder="Ingrese el código" />
-        </Form.Item>
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={onSubmit}
+      initialValues={{
+        price: 0,
+      }}
+    >
+      <Card className="mb-4">
+        <div className={cssColumnas}>
+          <Form.Item name="code" label="Código" rules={[$rules.required()]}>
+            <Input placeholder="Ingrese el código" />
+          </Form.Item>
 
-        <Form.Item
-          name="description"
-          label="Descripción"
-          rules={[$rules.required()]}
-        >
-          <Input placeholder="Ingrese una descripción" />
-        </Form.Item>
-        <Form.Item name="title" label="Titulo">
-          <Input placeholder="Ingrese un titulo" />
-        </Form.Item>
-        <Form.Item name="price" label="Precio">
-          <InputNumber
-            className="w-full"
-            precision={2}
-            placeholder="Ingrese el precio del productos"
-          />
-        </Form.Item>
-        <Form.Item name="imag" label="Precio">
-          <Upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture-card"
-            fileList={fileList}
-            onPreview={handlePreview}
-            onChange={handleChange}
+          <Form.Item name="name" label="Nombre" rules={[$rules.required()]}>
+            <Input placeholder="Ingrese una descripción" />
+          </Form.Item>
+          <Form.Item name="description" label="Descripción">
+            <Input placeholder="Ingrese una descripción" />
+          </Form.Item>
+          <Form.Item name="price" label="Precio" rules={[$rules.required()]}>
+            <InputNumber
+              className="w-full"
+              precision={2}
+              placeholder="Ingrese el precio del productos"
+            />
+          </Form.Item>
+          <Form.Item
+            name="cellar_id"
+            label="Bodega"
+            rules={[$rules.required()]}
           >
-            {fileList.length >= 8 ? null : uploadButton}
-          </Upload>
-        </Form.Item>
-      </div>
+            <Select
+              options={warehouseOptions}
+              className="w-full"
+              placeholder="Seleccione"
+            />
+          </Form.Item>
+          <Form.Item name="imag" label="Imagen">
+            <Upload
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChange}
+            >
+              {fileList.length >= 8 ? null : uploadButton}
+            </Upload>
+          </Form.Item>
+        </div>
+      </Card>
       <Modal
         open={previewOpen}
         title={previewTitle}
@@ -130,13 +172,14 @@ export default function FormClient() {
       >
         <img alt="example" style={{ width: '100%' }} src={previewImage} />
       </Modal>
-
-      <Button type="primary" className=" bg-blue-400" htmlType="submit">
-        Guardar
-      </Button>
-      <Button className="ml-3" onClick={() => router.push('/app/productos')}>
-        Cancelar
-      </Button>
+      <Space className="mt-4 flex justify-end mr-4">
+        <Button type="primary" className=" bg-blue-400" htmlType="submit">
+          Guardar
+        </Button>
+        <Button className="ml-3" onClick={() => router.push('/app/productos')}>
+          Cancelar
+        </Button>
+      </Space>
     </Form>
   )
 }

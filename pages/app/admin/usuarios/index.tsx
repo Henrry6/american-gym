@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Product } from '@/types/Product'
+import { User } from '@/types/User'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { Button, message, Popconfirm, Space, Table, Typography } from 'antd'
@@ -7,17 +7,17 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
 const { Column } = Table
 
-const Products: React.FC = () => {
+const Clients: React.FC = () => {
   const router = useRouter()
-  const [products, setusers] = useState<Product[]>([])
+  const [users, setUsers] = useState<User[]>([])
 
   const init = async () => {
-    axios.get('/api/products').then(({ data }) => {
-      const products = data.map((item: Product, index: number) => ({
+    axios.get('/api/users').then(({ data }) => {
+      const users = data.map((item: User, index: number) => ({
         ...item,
         key: index,
       }))
-      setusers(products)
+      setUsers(users)
     })
   }
 
@@ -27,7 +27,7 @@ const Products: React.FC = () => {
 
   const remove = async (id: string) => {
     if (id) {
-      await axios.delete(`/api/products/${id}`)
+      await axios.delete(`/api/users/${id}`)
       message.success('Documento eliminado')
       init()
     }
@@ -36,38 +36,37 @@ const Products: React.FC = () => {
   return (
     <>
       <Space className="flex justify-between mb-4">
-        <Typography.Title level={3}>Productos</Typography.Title>
+        <Typography.Title level={3}>Usuarios</Typography.Title>
         <Space>
           <Button type="primary" className="bg-blue-800" onClick={() => init()}>
             Refrescar
           </Button>
-          <Button onClick={() => router.push('/app/productos/insert')}>
+          <Button onClick={() => router.push('/app/admin/usuarios/insert')}>
             Insertar
           </Button>
         </Space>
       </Space>
-      <Table dataSource={products}>
-        <Column title="Código" dataIndex="code" key="code" />
-        <Column title="Nombre" dataIndex="name" key="nombre" />
+      <Table dataSource={users}>
+        <Column title="Usuario" dataIndex="username" key="username" />
         <Column
-          title="Precio"
-          dataIndex="price"
-          key="price"
-          render={(_: Product, record: Product) =>
-            record.price ? record.price : '0,00'
-          }
+          width={20}
+          title="Contraseña"
+          dataIndex="password"
+          key="password"
+          render={(row) => row.replace(/./gi, '*')}
         />
-        <Column title="Stock" dataIndex="total" key="total" />
+        <Column title="Tipo" dataIndex="type" key="type" />
+        <Column title="Estado" dataIndex="state" key="state" />
         <Column
           key="action"
-          render={(_: Product, record: Product) => (
+          render={(_: User, record: User) => (
             <Space size="middle">
-              <a href={`${'/app/productos/'}/${record._id}/edit`}>
+              <a href={`${'/app/admin/usuarios/'}/${record._id}/edit`}>
                 <EditOutlined title="Editar" />
               </a>
 
               <Popconfirm
-                title="¿Eliminar productos?"
+                title="¿Eliminar usuario?"
                 okButtonProps={{
                   type: 'default',
                 }}
@@ -83,4 +82,4 @@ const Products: React.FC = () => {
   )
 }
 
-export default Products
+export default Clients

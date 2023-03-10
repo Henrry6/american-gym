@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Product } from '@/types/Product'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { Button, message, Popconfirm, Space, Table } from 'antd'
+import { Button, message, Popconfirm, Space, Table, Typography } from 'antd'
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
 const { Column } = Table
@@ -12,7 +12,7 @@ const SalesNotes: React.FC = () => {
   const [products, setusers] = useState<Product[]>([])
 
   const init = async () => {
-    axios.get('/api/products').then(({ data }) => {
+    axios.get('/api/salesNotes').then(({ data }) => {
       const products = data.map((item: Product, index: number) => ({
         ...item,
         key: index,
@@ -27,7 +27,7 @@ const SalesNotes: React.FC = () => {
 
   const remove = async (id: string) => {
     if (id) {
-      await axios.delete(`/api/products/${id}`)
+      await axios.delete(`/api/salesNotes/${id}`)
       message.success('Documento eliminado')
       init()
     }
@@ -35,29 +35,46 @@ const SalesNotes: React.FC = () => {
 
   return (
     <>
-      <div className="flex justify-end">
-        <Button type="primary" className="bg-blue-800" onClick={() => init()}>
-          Refrescar
-        </Button>
-        <Button onClick={() => router.push('/app/productos/insert')}>
-          Insertar
-        </Button>
-      </div>
+      <Space className="flex justify-between mb-4">
+        <Typography.Title level={3}>Notas de ventas</Typography.Title>
+        <Space>
+          <Button type="primary" className="bg-blue-800" onClick={() => init()}>
+            Refrescar
+          </Button>
+          <Button onClick={() => router.push('/app/salesNotes/insert')}>
+            Insertar
+          </Button>
+        </Space>
+      </Space>
       <Table dataSource={products}>
-        <Column title="Código" dataIndex="code" key="code" />
-        <Column title="Descripción" dataIndex="description" key="description" />
-        <Column title="Precio" dataIndex="price" key="price" />
-        <Column title="Stock" dataIndex="total" key="total" />
+        <Column
+          title="Nº comprobante"
+          dataIndex="invoice_number"
+          key="invoice_number"
+        />
+        <Column
+          title="Razon social"
+          dataIndex="client"
+          key="client"
+          render={(_: Product, record: any) => record.cliente?.name}
+        />
+        <Column
+          title="Forma de pago"
+          dataIndex="code"
+          key="code"
+          render={(_: Product, record: any) => record.forma_pago}
+        />
+        <Column title="Total" dataIndex="total" key="total" />
         <Column
           key="action"
           render={(_: Product, record: Product) => (
             <Space size="middle">
-              <a href={`${'/app/productos/'}/${record._id}/edit`}>
+              <a href={`${'/app/salesNotes/'}/${record._id}/edit`}>
                 <EditOutlined title="Editar" />
               </a>
 
               <Popconfirm
-                title="¿Eliminar productos?"
+                title="¿Eliminar comprobante?"
                 okButtonProps={{
                   type: 'default',
                 }}

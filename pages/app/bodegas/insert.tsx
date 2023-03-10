@@ -1,19 +1,19 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 import $rules from '@/assets/rules'
-import { User } from '@/types/User'
 import { useRouter } from 'next/router'
+import { Cellar } from '@/types/Cellars'
+import { showError } from '@/assets/utils'
 import {
   Button,
   Card,
   Form,
   Input,
+  InputNumber,
   message,
-  Select,
   Space,
   Typography,
 } from 'antd'
-import { showError } from '@/assets/utils'
 
 export default function FormClient() {
   const router = useRouter()
@@ -21,67 +21,60 @@ export default function FormClient() {
 
   useEffect(() => {
     if (router.query.id) {
-      axios.get(`/api/clients/${router.query.id}`).then(({ data }) => {
+      axios.get(`/api/cellars/${router.query.id}`).then(({ data }) => {
         form.setFieldsValue(data)
       })
     }
-  }, [router.query.id])
+  }, [router.query.id, form])
 
-  const onSubmit = async (data: User) => {
+  const onSubmit = (data: Cellar) => {
     try {
       if (router.query.id) {
-        await axios.put(`/api/clients/${router.query.id}`, data)
+        axios.put(`/api/cellars/${router.query.id}`, data)
         message.success('Documento actualizado')
       } else {
-        await axios.post('/api/clients', data)
+        axios.post('/api/cellars', data)
         message.success('Documento guardado correctamente')
       }
-      router.push('/app/clientes')
-    } catch (e) {
-      showError(e)
+      router.push('/app/bodegas')
+    } catch (err) {
+      showError(err)
     }
   }
 
   const cssColumnas = 'grid grid-cols-1 md:grid-cols-3 gap-x-6'
 
   return (
-    <Form
-      form={form}
-      initialValues={{ state: 'activo' }}
-      layout="vertical"
-      onFinish={onSubmit}
-    >
+    <Form form={form} layout="vertical" onFinish={onSubmit}>
       <Card>
+        <Typography.Title level={4}>Datos</Typography.Title>
         <div className={cssColumnas}>
-          <Form.Item
-            name="identification_card"
-            label="No. Identificación"
-            rules={[$rules.required()]}
-          >
-            <Input placeholder="Ingrese su cédula/Ruc" />
+          <Form.Item name="code" label="Código" rules={[$rules.required()]}>
+            <Input placeholder="Ingrese el código" />
           </Form.Item>
 
           <Form.Item name="name" label="Nombre" rules={[$rules.required()]}>
             <Input placeholder="Ingrese el nombre" />
           </Form.Item>
+
           <Form.Item
-            name="last_name"
-            label="Apellido"
+            name="dimension"
+            label="Dimensión (m3)"
             rules={[$rules.required()]}
           >
-            <Input placeholder="Ingrese el apellido" />
+            <InputNumber
+              className="w-full"
+              placeholder="Ingrese el tamaño de la bodega en metros"
+              min={1}
+            />
           </Form.Item>
-          <Form.Item name="email" label="Email" rules={[$rules.required()]}>
-            <Input placeholder="Ingrese el correo" />
-          </Form.Item>
-          <Form.Item name="phone" label="Celular">
-            <Input placeholder="Ingrese el número de teléfono" />
-          </Form.Item>
-          <Form.Item name="state" label="Estado">
-            <Select placeholder="Seleccione una de las opciones">
-              <Select.Option value="activo">Activo</Select.Option>
-              <Select.Option value="inactivo">Inactivo</Select.Option>
-            </Select>
+
+          <Form.Item
+            name="addres"
+            label="Dirección"
+            rules={[$rules.required()]}
+          >
+            <Input placeholder="Ingrese una dirección" />
           </Form.Item>
         </div>
       </Card>
@@ -118,12 +111,11 @@ export default function FormClient() {
           </Form.Item>
         </div>
       </Card> */}
-
       <Space className="mt-4 flex justify-end mr-4">
         <Button type="primary" className=" bg-blue-400" htmlType="submit">
           Guardar
         </Button>
-        <Button className="ml-3" onClick={() => router.push('/app/clientes')}>
+        <Button className="ml-3" onClick={() => router.push('/app/bodegas')}>
           Cancelar
         </Button>
       </Space>

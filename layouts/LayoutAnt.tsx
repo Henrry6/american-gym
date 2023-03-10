@@ -1,15 +1,16 @@
-import React, { FC, ReactNode, useState } from 'react'
 import {
   DesktopOutlined,
   FileOutlined,
+  HomeOutlined,
   LogoutOutlined,
-  PieChartOutlined,
-  TeamOutlined,
+  ProfileOutlined,
   UserOutlined,
+  WindowsOutlined,
 } from '@ant-design/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { destruirToken } from '@/assets/utils'
+import React, { FC, ReactNode, useState } from 'react'
 import { Button, MenuProps, Modal, Space } from 'antd'
 import { Breadcrumb, Layout, Menu, theme } from 'antd'
 import ContextoUsuario, { useContextoUsuario } from '@/contexts/User'
@@ -32,22 +33,34 @@ function getItem(
   } as MenuItem
 }
 
-const items: MenuItem[] = [
-  getItem(<Link href="/app">home</Link>, '1', <PieChartOutlined />),
-  getItem(<Link href="/app/clientes">Usuarios</Link>, '2', <UserOutlined />),
-  getItem('Inventario', 'sub1', <DesktopOutlined />, [
-    getItem(<Link href="/app/productos">Productos</Link>, '3'),
-    getItem(<Link href="/app/servicios">Servicios</Link>, '4'),
-    getItem(<Link href="/app/kardex">Kardex</Link>, '5'),
-  ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [
-    getItem('Team 1', '6'),
-    getItem('Team 2', '8'),
-  ]),
-  getItem('Files', '9', <FileOutlined />),
-]
+function getItems(typeUser: string) {
+  const items: MenuItem[] = [
+    getItem(<Link href="/app">home</Link>, '1', <HomeOutlined />),
+    ...(typeUser === 'administrador'
+      ? [
+          getItem('Admin', 'sub1', <WindowsOutlined />, [
+            getItem(<Link href="/app/admin/usuarios">Usuarios</Link>, '6'),
+          ]),
+        ]
+      : []),
+    getItem('Inventario', 'sub2', <DesktopOutlined />, [
+      getItem(<Link href="/app/productos">Productos</Link>, '3'),
+      getItem(<Link href="/app/bodegas">Bodegas</Link>, '4'),
+    ]),
+    getItem('Comprobantes', 'sub3', <ProfileOutlined />, [
+      getItem(
+        <Link href="/app/salesNotes">Notas de ventas</Link>,
+        '9',
+        <FileOutlined />
+      ),
+    ]),
+    getItem(<Link href="/app/clientes">Clientes</Link>, '2', <UserOutlined />),
+  ]
+  return items
+}
 
 const LayoutApp: FC<{ children: ReactNode }> = (props) => {
+  // const [user, setUser] = useState<User>({} as User)
   const { user } = useContextoUsuario()
   const router = useRouter()
   const routes = router.route.split('/')
@@ -58,6 +71,7 @@ const LayoutApp: FC<{ children: ReactNode }> = (props) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken()
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
@@ -73,9 +87,13 @@ const LayoutApp: FC<{ children: ReactNode }> = (props) => {
             background: 'rgba(255, 255, 255, 0.2)',
           }}
         >
-          {user?.name}
+          {user?.username}
         </div>
-        <Menu theme="dark" mode="inline" items={items} />
+        <Menu
+          theme="dark"
+          mode="inline"
+          items={getItems(user?.type || 'administrador')}
+        />
       </Sider>
       <Layout className="site-layout">
         <Header
@@ -107,18 +125,10 @@ const LayoutApp: FC<{ children: ReactNode }> = (props) => {
               <Breadcrumb.Item key={'route' + index}>{x}</Breadcrumb.Item>
             ))}
           </Breadcrumb>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-            }}
-          >
-            {props.children}
-          </div>
+          {props.children}
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2023 Created by Ant UED
+          ©2023 Created by Developers
         </Footer>
       </Layout>
     </Layout>
