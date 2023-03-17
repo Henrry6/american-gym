@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
           <meta content="width=device-width, initial-scale=1" name="viewport" />
           <meta name="robots" content="follow, index" />
-          <meta name="description" content={siteMetadata.description} />
+          <meta name="description" content={siteMetadata.headerTitle} />
           <meta
             property="og:url"
             content={`${siteMetadata.siteUrl}${router.asPath}`}
