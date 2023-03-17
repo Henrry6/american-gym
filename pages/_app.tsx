@@ -30,11 +30,11 @@ export default function App({ Component, pageProps }: AppProps) {
             content={siteMetadata.siteLogo}
             key="logo"
           />
-          <meta name="twitter:card" content="summary_large_image" />
+          {/* <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content={siteMetadata.twitter} />
           <meta name="twitter:title" content={siteMetadata.title} />
           <meta name="twitter:description" content={siteMetadata.description} />
-          <meta name="twitter:image" content={siteMetadata.siteLogo} />
+          <meta name="twitter:image" content={siteMetadata.siteLogo} /> */}
         </Head>
         {router.pathname === '/login' ? (
           <div className="my-48 w-auto	">
