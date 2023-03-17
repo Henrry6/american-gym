@@ -23,8 +23,8 @@ export default function App({ Component, pageProps }: AppProps) {
           />
           <meta property="og:type" content="article" />
           <meta property="og:site_name" content={siteMetadata.title} />
+          <meta property="og:title" content={siteMetadata.headerTitle} />
           <meta property="og:description" content={siteMetadata.description} />
-          <meta property="og:title" content={siteMetadata.description} />
           <meta
             property="og:image"
             content={siteMetadata.siteLogo}
