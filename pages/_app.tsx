@@ -16,20 +16,25 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
           <meta content="width=device-width, initial-scale=1" name="viewport" />
           <meta name="robots" content="follow, index" />
-          <meta name="description" content={siteMetadata.headerTitle} />
+          <meta name="description" content={siteMetadata.description} />
           <meta
             property="og:url"
             content={`${siteMetadata.siteUrl}${router.asPath}`}
           />
           <meta property="og:type" content="article" />
           <meta property="og:site_name" content={siteMetadata.title} />
-          <meta property="og:title" content={siteMetadata.headerTitle} />
+          <meta property="og:title" content={siteMetadata.title} />
           <meta property="og:description" content={siteMetadata.description} />
           <meta
             property="og:image"
             content={siteMetadata.siteLogo}
             key="logo"
           />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content={siteMetadata.twitter} />
+          <meta name="twitter:title" content={siteMetadata.title} />
+          <meta name="twitter:description" content={siteMetadata.description} />
+          <meta name="twitter:image" content={siteMetadata.siteLogo} />
         </Head>
         {router.pathname === '/login' ? (
           <div className="my-48 w-auto	">
