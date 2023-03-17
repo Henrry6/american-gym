@@ -15,6 +15,21 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
         <Head>
           <meta content="width=device-width, initial-scale=1" name="viewport" />
+          <meta name="robots" content="follow, index" />
+          <meta name="description" content={siteMetadata.description} />
+          <meta
+            property="og:url"
+            content={`${siteMetadata.siteUrl}${router.asPath}`}
+          />
+          <meta property="og:type" content="article" />
+          <meta property="og:site_name" content={siteMetadata.title} />
+          <meta property="og:description" content={siteMetadata.description} />
+          <meta property="og:title" content={siteMetadata.description} />
+          <meta
+            property="og:image"
+            content={siteMetadata.siteLogo}
+            key="logo"
+          />
         </Head>
         {router.pathname === '/login' ? (
           <div className="my-48 w-auto	">
